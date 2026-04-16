@@ -65,7 +65,6 @@ pipeline {
             steps {
                 sh '''
                  npm ci
-                 npm run build 
                  npx playwright test
                 '''
             }
