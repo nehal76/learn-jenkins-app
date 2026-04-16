@@ -55,11 +55,23 @@ pipeline {
             }
         }
 
-        post {
-            always {
-                junit 'test-results.xml/junit.xml'
+        stage('E2E') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/playwright:v1.58.2-noble'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                   npm install serve
+                    learn-jenkins-app\node_modules\.bin\serve -s build
+                    npx playwright test
+                '''
             }
         }
+
+        
 
 
         
