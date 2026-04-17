@@ -70,28 +70,22 @@ pipeline {
             }
         }
 
-        stage('Deploy'){
-            agent {
+        stage {
+            agent{
                 docker {
-                    image 'node: 18-alpine'
-                    reuseNode true
+                    image 'node:18-alpine'
+                    reuseBide true
                 }
             }
-                step {
-                    sh '''
 
-                    npm install -g netlify-cli
-                    netlify --version
-                    '''
-                }
-
+            steps {
+                sh '''
+                npm install -g netlify-cli
+                netlify --version
+                '''
             }
         }
 
-        
-
-
-        
     }
 }
 
