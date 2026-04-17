@@ -76,7 +76,8 @@ pipeline {
                     image 'node: 18-alpine'
                     reuseNode true
                 }
-                step{
+            }
+                step {
                     sh '''
 
                     npm install -g netlify-cli
