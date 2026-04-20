@@ -92,6 +92,7 @@ pipeline {
                 netlify deploy --dir=build --prod
                 echo "Deployement is done!"
                 echo "You can chek!! Thanks"
+                echo "welcome bback to Jenkins"
                 '''
             }
         }
