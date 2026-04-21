@@ -100,3 +100,7 @@ pipeline {
 // npx serve -s build -l 3000 &
 
 // netlify deploy --dir=build --prod
+
+// http://13.210.249.135:8080/multibranch-webhook-trigger/invoke?token=my-token
+
+// http://13.210.249.135:8080/github-webhook/
