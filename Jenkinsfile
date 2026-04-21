@@ -72,6 +72,7 @@ pipeline {
                  npm ci
                  npx playwright test
                  echo "E2E tests completed"
+                 echo "Test results:"
                 '''
             }
         }
