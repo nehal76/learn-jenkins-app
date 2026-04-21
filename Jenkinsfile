@@ -89,7 +89,7 @@ pipeline {
                 netlify --version
                 echo "Deploying  to production. Site ID: $NETLIFY_SITE_ID"
                 netlify status
-                netlify deploy --dir=build
+                netlify deploy --dir=build --prod
                 '''
             }
         }
@@ -99,3 +99,5 @@ pipeline {
 
 //  learn-jenkins-app\node_modules\.bin\serve -s build 
 // npx serve -s build -l 3000 &
+
+// netlify deploy --dir=build --prod
