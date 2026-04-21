@@ -71,6 +71,7 @@ pipeline {
                 sh '''
                  npm ci
                  npx playwright test
+                 echo "E2E tests completed"
                 '''
             }
         }
