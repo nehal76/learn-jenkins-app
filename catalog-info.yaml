@@ -3,7 +3,9 @@ kind: Component
 metadata:
   name: my-react-component
   description: A sample component
+  annotations:
+    github.com/project-slug: https://github.com/nehal76/learn-jenkins-app
 spec:
   type: service
   lifecycle: production
-  owner: nehal.spn786@gmail.com
+  owner: nehal76
