@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: my-react-component
+  description: A sample component
+spec:
+  type: service
+  lifecycle: production
+  owner: team@example.com
