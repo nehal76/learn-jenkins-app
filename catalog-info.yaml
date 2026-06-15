@@ -5,7 +5,7 @@ metadata:
   description: A sample component
   annotations:
     github.com/project-slug: nehal76/learn-jenkins-app
-    jenkins.io/job-full-name: 'git - docker - test'
+    jenkins.io/job-full-name: 'git - docker -test'
 spec:
   type: service
   lifecycle: production
