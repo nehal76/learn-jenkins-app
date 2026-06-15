@@ -4,8 +4,8 @@ metadata:
   name: my-react-component
   description: A sample component
   annotations:
-    github.com/project-slug: https://github.com/nehal76/learn-jenkins-app
-    jenkins.io/job-full-name: git - docker - test
+    github.com/project-slug: nehal76/learn-jenkins-app
+    jenkins.io/job-full-name: git - docker -test
 spec:
   type: service
   lifecycle: production
