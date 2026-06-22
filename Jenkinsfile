@@ -110,6 +110,7 @@ pipeline {
 
                 echo "Copying build files to EC2..."
                 scp -o StrictHostKeyChecking=no -i react-ami.pem  -r build/* ubuntu@3.107.38.112:/home/ubuntu/
+                echo "Successfully copying build files to EC2..."
                  '''
             }
 
