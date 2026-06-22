@@ -95,7 +95,7 @@ pipeline {
         //     }
         // }
 
-        stage ('Deploy'){
+        stage ('Deploy to ec2'){
             agent{
                 docker {
                     image 'node:18-alpine'
@@ -106,9 +106,10 @@ pipeline {
            
             steps {
                 sh '''
-                    echo "Copying build files to EC2..."
+                apk add --no-cache openssh-client
 
-                    scp -o StrictHostKeyChecking=no -i react-ami.pem  -r build/* ubuntu@3.107.38.112:/home/ubuntu/
+                echo "Copying build files to EC2..."
+                scp -o StrictHostKeyChecking=no -i react-ami.pem  -r build/* ubuntu@3.107.38.112:/home/ubuntu/
                  '''
             }
 
