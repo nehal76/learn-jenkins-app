@@ -77,6 +77,24 @@ pipeline {
             }
         }
 
+        // stage ('Deploy'){
+        //     agent{
+        //         docker {
+        //             image 'node:18-alpine'
+        //             reuseNode true
+        //         }
+        //     }
+
+        //     steps {
+        //         sh '''
+        //         npm install -g netlify-cli
+        //         netlify --version
+        //         echo "Deploying  to production. Site ID: $NETLIFY_SITE_ID"
+        //         netlify status
+        //         '''
+        //     }
+        // }
+
         stage ('Deploy'){
             agent{
                 docker {
@@ -85,14 +103,15 @@ pipeline {
                 }
             }
 
+           
             steps {
                 sh '''
-                npm install -g netlify-cli
-                netlify --version
-                echo "Deploying  to production. Site ID: $NETLIFY_SITE_ID"
-                netlify status
-                '''
+                    echo "Copying build files to EC2..."
+
+                    scp -o StrictHostKeyChecking=no -i react-ami.pem  -r build/* ubuntu@3.107.38.112:/home/ubuntu/
+                 '''
             }
+
         }
 
     }
