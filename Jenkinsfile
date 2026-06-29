@@ -111,6 +111,7 @@ pipeline {
                 sudo rm -rf /var/www/html/* &&
                 sudo mv /home/ubuntu/build/* /var/www/html/ &&
                 sudo systemctl restart nginx
+                
 
                  '''
             }
