@@ -31,12 +31,11 @@ pipeline {
             steps{
                 sh '''
 
-                ls -la
-                node --version
-                npm --version
+                
                 npm ci
                 npm run test
                 ls -la
+                echo "Test completed successfully"
                 '''
             }
         }
@@ -51,12 +50,11 @@ pipeline {
             }
             steps {
                 sh '''
-                    ls -la
-                    node --version
-                    npm --version
+                   
                     npm ci
                     npm run build
                     ls -la
+                    echo "Build completed successfully"
                     
                 '''
             }
@@ -73,6 +71,7 @@ pipeline {
                 sh '''
                  npm ci
                  npx playwright test
+                 echo "E2E tests completed successfully"
                 '''
             }
         }
@@ -115,9 +114,14 @@ pipeline {
             scp -i "\$KEY" -r build ubuntu@16.176.27.233:/home/ubuntu/
 
             ssh -i "$KEY" ubuntu@16.176.27.233 "
-            cd /home/ubuntu/build &&
-            echo 'successfully connected' &&
-             ls -la
+            
+            
+            echo "🌐 Deploying static app..."
+            sudo rm -rf /var/www/html/*
+            sudo cp -r build/* /var/www/html/
+            sudo systemctl restart nginx
+
+             "
             """
         }
 
