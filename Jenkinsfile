@@ -96,21 +96,22 @@ pipeline {
         // }
 
         stage ('Deploy to ec2'){
-            agent{
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
+        
 
            
             steps {
                 sh '''
-                apk add --no-cache openssh-client
+                scp -i /home/nehahmed/react-ami.pem -r build/ ubuntu@<EC2-IP>:/home/ubuntu/
 
-                echo "Copying build files to EC2..."
-                scp -o StrictHostKeyChecking=no -i react-ami.pem  -r build/* ubuntu@3.107.38.112:/home/ubuntu/
-                echo "Successfully copying build files to EC2..."
+                 '''
+                 // update ec2 files via SSH and restart nginx
+                 sh '''
+                 
+                ssh -i /home/nehahmed/react-ami.pem ubuntu@<EC2-IP> "
+                sudo rm -rf /var/www/html/* &&
+                sudo mv /home/ubuntu/build/* /var/www/html/ &&
+                sudo systemctl restart nginx
+
                  '''
             }
 
