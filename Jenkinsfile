@@ -102,7 +102,8 @@ pipeline {
                 credentialsId: 'ec2-key',
                 keyFileVariable: 'KEY'
             )
-        ]) {
+        ])
+         {
             sh """
             pwd
             ls -l
@@ -114,6 +115,13 @@ pipeline {
             scp -i "\$KEY" -r build ubuntu@16.176.27.233:/home/ubuntu/
             """
         }
+
+        sh'''
+        ssh -i "$KEY" ubuntu@16.176.27.233
+        cd /home/ubuntu/build
+        echo "succesfully connected"
+        ls -la
+        '''
     }
 }
 
