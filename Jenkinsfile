@@ -113,17 +113,14 @@ pipeline {
             ssh-keyscan -H 16.176.27.233 >> ~/.ssh/known_hosts
 
             scp -i "\$KEY" -r build ubuntu@16.176.27.233:/home/ubuntu/
+
+            ssh -i "$KEY" ubuntu@16.176.27.233 "
+            cd /home/ubuntu/build &&
+            echo 'successfully connected' &&
+             ls -la
             """
         }
 
-        sh'''
-       ssh -i "$KEY" ubuntu@16.176.27.233 "
-        cd /home/ubuntu/build &&
-        echo 'successfully connected' &&
-        ls -la
-"
-
-        '''
     }
 }
 
