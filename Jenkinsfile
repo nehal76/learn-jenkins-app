@@ -101,17 +101,17 @@ pipeline {
            
             steps {
                 sh '''
-                scp -i /home/nehahmed/react-ami.pem -r build/ ubuntu@<EC2-IP>:/home/ubuntu/
+                scp -i /home/nehahmed/react-ami.pem -r build/ ubuntu@16.176.27.233:/home/ubuntu/
 
                  '''
                  // update ec2 files via SSH and restart nginx
                  sh '''
                  
-                ssh -i /home/nehahmed/react-ami.pem ubuntu@<EC2-IP> "
+                ssh -i /home/nehahmed/react-ami.pem ubuntu@16.176.27.233 "
                 sudo rm -rf /var/www/html/* &&
                 sudo mv /home/ubuntu/build/* /var/www/html/ &&
                 sudo systemctl restart nginx
-                
+
 
                  '''
             }
