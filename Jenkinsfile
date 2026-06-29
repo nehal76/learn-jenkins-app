@@ -107,11 +107,16 @@ pipeline {
             )
         ]) {
             sh '''
+            
+pwd
+            ls -l
+            ls -l build || echo "build folder missing"
+
             mkdir -p ~/.ssh
             ssh-keyscan -H 16.176.27.233 >> ~/.ssh/known_hosts
 
-            scp -i $KEY \
-                -r build/ ubuntu@16.176.27.233:/home/ubuntu/
+            scp -i $KEY -r build ubuntu@16.176.27.233:/home/ubuntu/
+
             '''
         }
     }
