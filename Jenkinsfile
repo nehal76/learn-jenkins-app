@@ -99,22 +99,23 @@ pipeline {
         
 
            
-            steps {
-                sh '''
-                scp -i /home/nehahmed/react-ami.pem -r build/ ubuntu@16.176.27.233:/home/ubuntu/
+             steps {
+        withCredentials([
+            sshUserPrivateKey(
+                credentialsId: 'ec2-key',
+                keyFileVariable: 'KEY'
+            )
+        ]) {
+            sh '''
+            mkdir -p ~/.ssh
+            ssh-keyscan -H 16.176.27.233 >> ~/.ssh/known_hosts
 
-                 '''
-                 // update ec2 files via SSH and restart nginx
-                 sh '''
-                 
-                ssh -i /home/nehahmed/react-ami.pem ubuntu@16.176.27.233 "
-                sudo rm -rf /var/www/html/* &&
-                sudo mv /home/ubuntu/build/* /var/www/html/ &&
-                sudo systemctl restart nginx
+            scp -i $KEY \
+                -r build/ ubuntu@16.176.27.233:/home/ubuntu/
+            '''
+        }
+    }
 
-
-                 '''
-            }
 
         }
 
