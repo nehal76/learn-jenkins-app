@@ -117,10 +117,12 @@ pipeline {
         }
 
         sh'''
-        ssh -i "$KEY" ubuntu@16.176.27.233
-        cd /home/ubuntu/build
-        echo "succesfully connected"
+       ssh -i "$KEY" ubuntu@16.176.27.233 "
+        cd /home/ubuntu/build &&
+        echo 'successfully connected' &&
         ls -la
+"
+
         '''
     }
 }
